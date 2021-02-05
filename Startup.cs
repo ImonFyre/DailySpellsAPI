@@ -3,10 +3,14 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using GraphiQl;
+using DailySpellsAPI.GraphQL.GraphQLSchema;
+using GraphQL.Server;
+using GraphQL.Server.Ui.Playground;
 
 namespace DailySpellsAPI
 {
-    public class Startup
+	public class Startup
     {
         readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public Startup(IConfiguration configuration)
@@ -27,8 +31,13 @@ namespace DailySpellsAPI
                                       builder.WithOrigins("*");
                                   });
             });
+            services.AddScoped<GraphQLSchema>();
+            services.AddGraphQL()
+                    .AddSystemTextJson()
+                    .AddGraphTypes(typeof(GraphQLSchema), ServiceLifetime.Scoped);
+
             services.AddControllers();
-           
+          
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,6 +59,9 @@ namespace DailySpellsAPI
             {
                 endpoints.MapControllers();
             });
+
+            app.UseGraphQL<GraphQLSchema>();
+            app.UseGraphQLPlayground(options: new GraphQLPlaygroundOptions());
         }
     }
 }

@@ -36,6 +36,5 @@ namespace DailySpellsAPI.Controllers
         {
             return new OkObjectResult(characters.Select((x, i) => new { index = i, item = x.name }));
         }
-       
     }
 }
