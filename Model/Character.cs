@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,24 +10,27 @@ namespace DailySpellsAPI.Model
     {
         public Character() { }
 
-        public Character(string CharacterName)
+        public Character(int id, string characterName)
         {
-            name = CharacterName;
+            Id = id;
+            Name = characterName;
         }
 
-        public Character(string CharacterName, string Race) : this(CharacterName)
+        public Character(int id, string characterName, string race) : this(id, characterName)
         {
-            race = Race;
+            this.Race = race;
         }
 
-        public Character(string CharacterName, string Race, CharacterClass[] characterClasses, CharacterStatistics stats) : this(CharacterName, Race)
+        public Character(int id, string characterName, string race, CharacterClass[] characterClasses, CharacterStatistics stats) : this(id, characterName, race)
         {
-            classes = characterClasses;
-            characterStats = stats;
+            Classes = characterClasses;
+            CharacterStats = stats;
         }
-        public string name { get; set; }
-        public string race { get; set; }
-        public CharacterClass[] classes { get; set; }
-        public CharacterStatistics characterStats { get; set; }
+        [Key]
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Race { get; set; }
+        public CharacterClass[] Classes { get; set; }
+        public CharacterStatistics CharacterStats { get; set; }
     }
 }

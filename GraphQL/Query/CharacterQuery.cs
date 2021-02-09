@@ -1,22 +1,24 @@
 ﻿using DailySpellsAPI.GraphQL.Interfaces;
-using DailySpellsAPI.Service;
 using DailySpellsAPI.Types;
 using GraphQL;
 using GraphQL.Types;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace DailySpellsAPI.Query
 {
-	public class AppQuery : ObjectGraphType
+	public class CharacterQuery : ObjectGraphType
 	{
-		public AppQuery(ICharacterRepository repository)
+		public CharacterQuery(ICharacterRepository repository)
 		{
 			Field<ListGraphType<CharacterType>>(
 				"characters",
 				resolve: context => repository.GetCharacters());
+
+			Field<ObjectGraphType<CharacterType>>(
+				"character",
+				arguments: new QueryArguments(new QueryArgument<IntGraphType> { Name = "id" }),
+				resolve: context => repository.GetCharacter(context.GetArgument<int>("id"))
+			);
+
 		}
 	}
 }

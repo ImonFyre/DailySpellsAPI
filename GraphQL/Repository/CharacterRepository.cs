@@ -10,7 +10,20 @@ namespace DailySpellsAPI.GraphQL
 	public class CharacterRepository : ICharacterRepository
 	{
 		private readonly ApplicationContext _context;
-		public IEnumerable<Character> GetCharacters() => _context.Characters.ToList();
 		
+		public CharacterRepository(ApplicationContext context)
+		{
+			_context = context;
+		}
+
+		public IEnumerable<Character> GetCharacters()
+		{
+			return MockCharacters.characters;
+		}
+
+		public Character GetCharacter(int id)
+		{
+			return MockCharacters.characters[id];
+		}
 	}
 }

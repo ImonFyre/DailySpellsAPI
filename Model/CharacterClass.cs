@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DailySpellsAPI.Model
 {
-    public class CharacterClass
+	public class CharacterClass
     {
         public CharacterClass() { }
 
@@ -14,6 +12,9 @@ namespace DailySpellsAPI.Model
             name = className;
             level = classLevel;
         }
+        public Guid Id { get; set; }
+        [ForeignKey("CharacterId")]
+        public Guid CharacterId { get; set; }
         public string name { get; set; }
         public int level { get; set; }
     }

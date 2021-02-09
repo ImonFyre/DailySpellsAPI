@@ -8,6 +8,8 @@ namespace DailySpellsAPI.Types
 		public CharacterClassType()
 		{
 			Name = "Character";
+			Field(_ => _.Id);
+			Field(_ => _.CharacterId);
 			Field(_ => _.name).Description("Character Class Name");
 			Field(_ => _.level).Description("Character Class Level");
 		}

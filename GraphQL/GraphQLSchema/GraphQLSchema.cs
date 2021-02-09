@@ -9,7 +9,7 @@ namespace DailySpellsAPI.GraphQL.GraphQLSchema
 	{
 		public GraphQLSchema(IServiceProvider provider) : base(provider)
 		{
-			Query = provider.GetRequiredService<AppQuery>();
+			Query = provider.GetRequiredService<CharacterQuery>();
 		}
 	}
 }

@@ -8,10 +8,11 @@ namespace DailySpellsAPI.Types
 		public CharacterType()
 		{
 			Name = "Character";
-			Field(_ => _.name).Description("Character Name");
-			Field(_ => _.race).Description("Character Race");
-			Field(_ => _.classes).Description("Character Class(es)");
-			Field(_ => _.characterStats).Description("Character stats");
+			Field(_ => _.Id);
+			Field(_ => _.Name).Description("Character Name");
+			Field(_ => _.Race).Description("Character Race");
+			Field(_ => _.Classes, nullable: true, type: typeof(ListGraphType<CharacterClassType>)).Description("Character Classes");
+			Field(_ => _.CharacterStats, nullable:false, type: typeof(ObjectGraphType<CharacterStatisticsType>)).Description("Character stats");
 		}
 	}
 }
