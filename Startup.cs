@@ -31,7 +31,8 @@ namespace DailySpellsAPI
 				options.AddPolicy(name: MyAllowSpecificOrigins,
 								  builder =>
 								  {
-									  builder.WithOrigins("*");
+									  builder.WithOrigins("*")
+									  .AllowAnyHeader();
 								  });
 			});
 
@@ -63,6 +64,7 @@ namespace DailySpellsAPI
 
 			app.UseRouting();
 			app.UseCors(MyAllowSpecificOrigins);
+				
 
 			app.UseAuthorization();
 			
