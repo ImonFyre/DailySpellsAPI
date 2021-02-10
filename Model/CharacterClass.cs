@@ -12,9 +12,7 @@ namespace DailySpellsAPI.Model
             name = className;
             level = classLevel;
         }
-        public Guid Id { get; set; }
-        [ForeignKey("CharacterId")]
-        public Guid CharacterId { get; set; }
+        
         public string name { get; set; }
         public int level { get; set; }
     }
