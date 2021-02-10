@@ -6,5 +6,7 @@ namespace DailySpellsAPI.GraphQL.Interfaces
 	public interface ICharacterRepository
 	{
 		IEnumerable<Character> GetCharacters();
+
+		Character GetCharacter(int charId);
 	}
 }
