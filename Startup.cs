@@ -3,12 +3,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using DailySpellsAPI.GraphQL.GraphQLSchema;
 using GraphQL.Server;
 using GraphQL.Server.Ui.Playground;
-using DailySpellsAPI.GraphQL;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
+using DailySpellsAPI.GraphQL.Repository;
 using DailySpellsAPI.GraphQL.Interfaces;
-using DailySpellsAPI.GraphQL.Context;
+using DailySpellsAPI.GraphQL.GraphQLSchema;
 
 namespace DailySpellsAPI
 {
@@ -34,15 +34,21 @@ namespace DailySpellsAPI
 									  builder.WithOrigins("*");
 								  });
 			});
-			services.AddDbContext<ApplicationContext>();//(opt => opt.UseSqlServer(Configuration.GetConnectionString("sqlConString")));
+
+
 			services.AddScoped<ICharacterRepository, CharacterRepository>();
-			services.AddScoped<GraphQLSchema>();
+			services.AddScoped<AppSchema>();
 			services.AddGraphQL()
-					.AddSystemTextJson()
-					.AddGraphTypes(typeof(GraphQLSchema), ServiceLifetime.Scoped);
+				.AddSystemTextJson()
+				.AddGraphTypes(typeof(AppSchema), ServiceLifetime.Scoped);
 
-			services.AddControllers();
+			services.AddControllers()
+					.AddNewtonsoftJson(o => o.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
+			services.Configure<KestrelServerOptions>(options =>
+			{
+				options.AllowSynchronousIO = true;
+			});
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,8 +65,10 @@ namespace DailySpellsAPI
 			app.UseCors(MyAllowSpecificOrigins);
 
 			app.UseAuthorization();
-			app.UseGraphQL<GraphQLSchema>();
+			
+			app.UseGraphQL<AppSchema>();
 			app.UseGraphQLPlayground(options: new GraphQLPlaygroundOptions());
+			
 			app.UseEndpoints(endpoints =>
 			{
 				endpoints.MapControllers();

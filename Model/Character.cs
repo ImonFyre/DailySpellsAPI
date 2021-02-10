@@ -8,6 +8,14 @@ namespace DailySpellsAPI.Model
 {
     public class Character
     {
+        [Key]
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Race { get; set; }
+        public CharacterClass[] Classes { get; set; }
+        public CharacterStatistics CharacterStats { get; set; }
+
+
         public Character() { }
 
         public Character(int id, string characterName)
@@ -26,11 +34,6 @@ namespace DailySpellsAPI.Model
             Classes = characterClasses;
             CharacterStats = stats;
         }
-        [Key]
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Race { get; set; }
-        public CharacterClass[] Classes { get; set; }
-        public CharacterStatistics CharacterStats { get; set; }
+       
     }
 }
