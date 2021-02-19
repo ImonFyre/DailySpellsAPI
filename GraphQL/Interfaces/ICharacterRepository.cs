@@ -1,4 +1,4 @@
-﻿using DailySpellsAPI.Model;
+﻿using DailySpellsAPI.DBModel;
 using System.Collections.Generic;
 
 namespace DailySpellsAPI.GraphQL.Interfaces

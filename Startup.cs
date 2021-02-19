@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Server.Kestrel.Core;
 using DailySpellsAPI.GraphQL.Repository;
 using DailySpellsAPI.GraphQL.Interfaces;
 using DailySpellsAPI.GraphQL.GraphQLSchema;
+using Microsoft.EntityFrameworkCore;
+using DailySpellsAPI.DBModel;
 
 namespace DailySpellsAPI
 {
@@ -34,8 +36,13 @@ namespace DailySpellsAPI
 									  builder.WithOrigins("*")
 									  .AllowAnyHeader();
 								  });
+				services.AddDbContext<DailySpellsContext>(options =>
+				{
+					options.UseNpgsql(Configuration.GetConnectionString("DailySpells"));
+				});
 			});
 
+			services.AddDbContext<DailySpellsContext>(opt => opt.UseNpgsql(Configuration.GetConnectionString("DailySpells")));
 
 			services.AddScoped<ICharacterRepository, CharacterRepository>();
 			services.AddScoped<AppSchema>();

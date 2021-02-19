@@ -1,9 +1,10 @@
-﻿using DailySpellsAPI.Model;
+﻿
+using DailySpellsAPI.DBModel;
 using GraphQL.Types;
 
 namespace DailySpellsAPI.GraphQL.Types
 {
-	public class CharacterStatsType : ObjectGraphType<CharacterStatistics>
+	public class CharacterStatsType : ObjectGraphType<CharacterStat>
 	{
 		public CharacterStatsType()
 		{

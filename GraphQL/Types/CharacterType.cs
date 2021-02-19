@@ -1,4 +1,4 @@
-﻿using DailySpellsAPI.Model;
+﻿using DailySpellsAPI.DBModel;
 using GraphQL.Types;
 
 namespace DailySpellsAPI.GraphQL.Types
@@ -9,9 +9,9 @@ namespace DailySpellsAPI.GraphQL.Types
 		{
 			Field(x => x.Id, type: typeof(IdGraphType));
 			Field(x => x.Name).Description("Character Name");
-			Field(x => x.Race).Description("Character Race");
+			Field(x => x.Race, type: typeof(RaceType)).Description("Character Race");
 			Field(x => x.CharacterStats, type: typeof(CharacterStatsType));
-			Field<ListGraphType<CharacterClassType>>("classes");
+			Field<ListGraphType<CharacterClassType>>("CharacterClasses");
 		}
 	}
 }

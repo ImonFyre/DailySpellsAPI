@@ -16,13 +16,13 @@ namespace DailySpellsAPI.Controllers
 
         // GET: api/<ValuesController>
         [HttpGet]
-        public IEnumerable<Character> GetCharacters()
+        public IEnumerable<CharacterDTO> GetCharacters()
         {
             return MockCharacters.characters;
         }
         // GET api/<ValuesController>/5
         [HttpGet("{id}")]
-        public Character GetCharacter(int id)
+        public CharacterDTO GetCharacter(int id)
         {
             return MockCharacters.characters[id];
         }

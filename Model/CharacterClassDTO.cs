@@ -3,11 +3,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DailySpellsAPI.Model
 {
-	public class CharacterClass
+	public class CharacterClassDTO
     {
-        public CharacterClass() { }
+        public CharacterClassDTO() { }
 
-        public CharacterClass(string className, int classLevel)
+        public CharacterClassDTO(string className, int classLevel)
         {
             name = className;
             level = classLevel;

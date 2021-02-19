@@ -7,9 +7,10 @@ namespace DailySpellsAPI.Model
 {
 	public class MockCharacters
 	{
-		public static Character[] characters = {new Character(1,"Drizzt", "Drow", new CharacterClass[] { new CharacterClass("Barbarian", 3), new CharacterClass("Fighter", 11), new CharacterClass("Ranger", 7) }, new CharacterStatistics(13, 20, 15, 17, 17, 15)),
-			new Character(2,"Wulfgar", "Human", new CharacterClass[] { new CharacterClass("Barbarian", 7), new CharacterClass("Fighter", 4) }, new CharacterStatistics(20, 15, 17, 13, 12, 13)),
-			new Character(3,"Regis", "Halfing", new CharacterClass[] { new CharacterClass("Rogue", 7) }, new CharacterStatistics(10, 18, 15, 13, 15, 15)),
-			new Character(4,"Bruenor", "Dwarf", new CharacterClass[] { new CharacterClass("Fighter", 14) }, new CharacterStatistics(18, 14, 22, 15, 13, 13)) };
+		public static CharacterDTO[] characters = {
+			new CharacterDTO(1,"Drizzt", "Drow", new CharacterClassDTO[] { new CharacterClassDTO("Barbarian", 3), new CharacterClassDTO("Fighter", 11), new CharacterClassDTO("Ranger", 7) }, new CharacterStatisticsDTO(13, 20, 15, 17, 17, 15)),
+			new CharacterDTO(2,"Wulfgar", "Human", new CharacterClassDTO[] { new CharacterClassDTO("Barbarian", 7), new CharacterClassDTO("Fighter", 4) }, new CharacterStatisticsDTO(20, 15, 17, 13, 12, 13)),
+			new CharacterDTO(3,"Regis", "Halfing", new CharacterClassDTO[] { new CharacterClassDTO("Rogue", 7) }, new CharacterStatisticsDTO(10, 18, 15, 13, 15, 15)),
+			new CharacterDTO(4,"Bruenor", "Dwarf", new CharacterClassDTO[] { new CharacterClassDTO("Fighter", 14) }, new CharacterStatisticsDTO(18, 14, 22, 15, 13, 13)) };
 	}
 }

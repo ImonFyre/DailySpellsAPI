@@ -1,4 +1,4 @@
-﻿using DailySpellsAPI.Model;
+﻿using DailySpellsAPI.DBModel;
 using GraphQL.Types;
 
 namespace DailySpellsAPI.GraphQL.Types
@@ -7,8 +7,8 @@ namespace DailySpellsAPI.GraphQL.Types
 	{
 		public CharacterClassType()
 		{
-			Field(c => c.level);
-			Field(c => c.name);
+			Field(c => c.Level);
+			Field(c => c.Class.ClassName);
 		}
 	}
 }

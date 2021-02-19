@@ -17,7 +17,10 @@ namespace DailySpellsAPI.GraphQL.Queries
 			Field<CharacterType>(
 				"character",
 				arguments: new QueryArguments(new QueryArgument<NonNullGraphType<IdGraphType>> {  Name = "id"}),
-				resolve: context => repository.GetCharacter(context.GetArgument<int>("id"))
+				resolve: context => {
+					var character = repository.GetCharacter(context.GetArgument<int>("id"));
+					return character;
+					}
 			);
 		}
 	}

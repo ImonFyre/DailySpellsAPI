@@ -6,30 +6,30 @@ using System.Threading.Tasks;
 
 namespace DailySpellsAPI.Model
 {
-    public class Character
+    public class CharacterDTO
     {
         [Key]
         public int Id { get; set; }
         public string Name { get; set; }
         public string Race { get; set; }
-        public CharacterClass[] Classes { get; set; }
-        public CharacterStatistics CharacterStats { get; set; }
+        public CharacterClassDTO[] Classes { get; set; }
+        public CharacterStatisticsDTO CharacterStats { get; set; }
 
 
-        public Character() { }
+        public CharacterDTO() { }
 
-        public Character(int id, string characterName)
+        public CharacterDTO(int id, string characterName)
         {
             Id = id;
             Name = characterName;
         }
 
-        public Character(int id, string characterName, string race) : this(id, characterName)
+        public CharacterDTO(int id, string characterName, string race) : this(id, characterName)
         {
             this.Race = race;
         }
 
-        public Character(int id, string characterName, string race, CharacterClass[] characterClasses, CharacterStatistics stats) : this(id, characterName, race)
+        public CharacterDTO(int id, string characterName, string race, CharacterClassDTO[] characterClasses, CharacterStatisticsDTO stats) : this(id, characterName, race)
         {
             Classes = characterClasses;
             CharacterStats = stats;

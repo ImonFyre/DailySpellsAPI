@@ -3,11 +3,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DailySpellsAPI.Model
 {
-	public class CharacterStatistics
+	public class CharacterStatisticsDTO
     {
-        public CharacterStatistics() { }
+        public CharacterStatisticsDTO() { }
 
-        public CharacterStatistics(int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma)
+        public CharacterStatisticsDTO(int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma)
         {
             Str = strength;
             Dex = dexterity;
