@@ -1,4 +1,4 @@
-﻿using DailySpellsAPI.GraphQL.Interfaces;
+﻿using DailySpellsAPI.Interfaces;
 using DailySpellsAPI.GraphQL.Types;
 using GraphQL;
 using GraphQL.Types;

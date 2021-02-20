@@ -20,7 +20,7 @@
     "DailySpellsAPI": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "weatherforecast",
+      "launchUrl": "api/DailySpells/GetCharacters",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

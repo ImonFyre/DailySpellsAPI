@@ -6,11 +6,13 @@ using Microsoft.Extensions.Hosting;
 using GraphQL.Server;
 using GraphQL.Server.Ui.Playground;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
-using DailySpellsAPI.GraphQL.Repository;
-using DailySpellsAPI.GraphQL.Interfaces;
+using DailySpellsAPI.Repository;
+using DailySpellsAPI.Interfaces;
 using DailySpellsAPI.GraphQL.GraphQLSchema;
 using Microsoft.EntityFrameworkCore;
 using DailySpellsAPI.DBModel;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace DailySpellsAPI
 {
@@ -43,6 +45,9 @@ namespace DailySpellsAPI
 			});
 
 			services.AddDbContext<DailySpellsContext>(opt => opt.UseNpgsql(Configuration.GetConnectionString("DailySpells")));
+			services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+			services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
+
 
 			services.AddScoped<ICharacterRepository, CharacterRepository>();
 			services.AddScoped<AppSchema>();

@@ -1,9 +1,9 @@
 ﻿using DailySpellsAPI.DBModel;
-using DailySpellsAPI.GraphQL.Interfaces;
+using DailySpellsAPI.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DailySpellsAPI.GraphQL.Repository
+namespace DailySpellsAPI.Repository
 {
 	public class CharacterRepository : ICharacterRepository
 	{

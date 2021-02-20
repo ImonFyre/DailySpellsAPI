@@ -1,7 +1,7 @@
 ﻿using DailySpellsAPI.DBModel;
 using System.Collections.Generic;
 
-namespace DailySpellsAPI.GraphQL.Interfaces
+namespace DailySpellsAPI.Interfaces
 {
 	public interface ICharacterRepository
 	{

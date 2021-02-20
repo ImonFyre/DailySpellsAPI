@@ -1,4 +1,5 @@
-﻿using DailySpellsAPI.Model;
+﻿using DailySpellsAPI.DBModel;
+using DailySpellsAPI.Repository;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,20 +17,32 @@ namespace DailySpellsAPI.Controllers
 
         // GET: api/<ValuesController>
         [HttpGet]
-        public IEnumerable<CharacterDTO> GetCharacters()
+        public IEnumerable<Character> GetCharacters()
         {
-            return MockCharacters.characters;
+            using (DailySpellsContext dsc = new DailySpellsContext())
+            {
+                CharacterRepository cr = new CharacterRepository(dsc);
+                return cr.GetCharacters();
+            }
         }
         // GET api/<ValuesController>/5
         [HttpGet("{id}")]
-        public CharacterDTO GetCharacter(int id)
+        public Character GetCharacter(int id)
         {
-            return MockCharacters.characters[id];
+            using (DailySpellsContext dsc = new DailySpellsContext())
+            {
+                CharacterRepository cr = new CharacterRepository(dsc);
+                return cr.GetCharacter(id);
+            }
         }
         [HttpGet]
         public ActionResult GetMenu()
         {
-            return new OkObjectResult(MockCharacters.characters.Select((x, i) => new { index = i, item = x.Name }));
+            using (DailySpellsContext dsc = new DailySpellsContext())
+            {
+                CharacterRepository cr = new CharacterRepository(dsc);
+                return new OkObjectResult(cr.GetCharacters().Select((x, i) => new { index = i, item = x.Name }));
+            }
         }
     }
 }
