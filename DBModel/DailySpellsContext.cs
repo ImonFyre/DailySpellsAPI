@@ -1,14 +1,12 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.Extensions.Configuration;
 
 #nullable disable
 
 namespace DailySpellsAPI.DBModel
 {
-    public partial class DailySpellsContext : DbContext
+	public partial class DailySpellsContext : DbContext
     {
         
         public DailySpellsContext()
@@ -31,9 +29,9 @@ namespace DailySpellsAPI.DBModel
             if (!optionsBuilder.IsConfigured)
             {
                 IConfigurationRoot configuration = new ConfigurationBuilder()
-               .SetBasePath(Directory.GetCurrentDirectory())
-               .AddJsonFile("appsettings.json")
-               .Build();
+                   .SetBasePath(Directory.GetCurrentDirectory())
+                   .AddJsonFile("appsettings.json")
+                   .Build();
                 optionsBuilder.UseNpgsql(configuration.GetConnectionString("DailySpells"));
             }
         }
