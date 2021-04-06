@@ -36,7 +36,7 @@ namespace DailySpellsAPI
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
-			services.AddCors(options =>
+			/*services.AddCors(options =>
 			{
 				options.AddPolicy(name: MyAllowSpecificOrigins,
 								  builder =>
@@ -44,12 +44,12 @@ namespace DailySpellsAPI
 									  builder.WithOrigins("*")
 									  .AllowAnyHeader();
 								  });
-				services.AddDbContext<DailySpellsContext>(options =>
-				{
-					options.UseNpgsql(Configuration.GetConnectionString("DailySpell"));
-				});
+				
+			});*/
+			services.AddDbContext<DailySpellsContext>(options =>
+			{
+				options.UseNpgsql(Configuration.GetConnectionString("DailySpells"));
 			});
-			
 			services.AddDbContext<DailySpellsContext>(opt => opt.UseNpgsql(Configuration.GetConnectionString("DailySpells")));
 			services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 			services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
